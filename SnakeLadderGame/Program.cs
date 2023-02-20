@@ -5,7 +5,7 @@
         public static int RollDice()
         {
             Random random = new Random();
-            int rollDice = random.Next(1, 7);
+            int rollDice = random.Next(0, 7);
             Console.WriteLine("Rolled Dice number is " + rollDice);
             return rollDice;
         }
@@ -61,10 +61,10 @@
             }
             return position;
         }
-        
+
         public static bool CheckWin(int position)
         {
-            return position == 100 ;
+            return position == 100;
         }
 
         public static int CheckNoPlay(int previousPosition , int newDice)
@@ -78,10 +78,13 @@
         }
         static void Main(string[] args)
         {
-            int position = 0 ;
-            while(true)
+            int position = 0;
+            int rollDiceCount = 0;
+            
+            while (true)
             {
                 int dice = RollDice();
+                rollDiceCount++;
                 position = CheckNoPlay(position, dice);
                 if (CheckWin(position))
                 {
@@ -92,9 +95,10 @@
                 Console.WriteLine("Position Before Snake and Ladder is " + position);
                 position = CheckSnake(position);
                 position = CheckLadder(position);
-                Console.WriteLine("Position After Snake and Ladder is " +position);
-
+                Console.WriteLine("Position After Snake and Ladder is " + position);
+                Console.WriteLine("The Number of Time Dice was played is " + rollDiceCount);
             }
+                        
         }
     }
 }
